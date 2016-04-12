@@ -17,5 +17,5 @@ RUN cd /usr/local/bin/ && ln -s ../lib/openmole/openmole
 
 VOLUME /root/
 
-ENTRYPOINT openmole --port 8888
+ENTRYPOINT openmole --port 8888 --remote
 
