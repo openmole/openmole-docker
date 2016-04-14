@@ -13,11 +13,11 @@ RUN cd /tmp/ && git clone https://github.com/openmole/openmole.git && \
     mv bin/openmole/target/assemble /usr/local/lib/openmole && \
     rm -rf /tmp/openmole/ /root/.ivy2 
 
+RUN chmod +x /usr/local/lib/openmole/openmole
 RUN cd /usr/local/bin/ && ln -s ../lib/openmole/openmole
 
 RUN adduser openmole --home /var/openmole/
 
-VOLUME /var/openmole/
-
-ENTRYPOINT su openmole && openmole --port 8888 --remote
+USER openmole
+ENTRYPOINT openmole --port 8888 --remote
 
