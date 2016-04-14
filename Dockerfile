@@ -1,7 +1,7 @@
 FROM debian:testing
 MAINTAINER ISCPIF <contact@iscpif.fr>
 
-RUN apt-get update && apt-get install -y ca-certificates wget openjdk-8-jdk git pwgen
+RUN apt-get update && apt-get install -y ca-certificates wget openjdk-8-jdk git pwgen && apt clean
 RUN /var/lib/dpkg/info/ca-certificates-java.postinst configure
 
 COPY sbt /usr/local/bin/
