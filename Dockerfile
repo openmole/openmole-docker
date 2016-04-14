@@ -15,7 +15,9 @@ RUN cd /tmp/ && git clone https://github.com/openmole/openmole.git && \
 
 RUN cd /usr/local/bin/ && ln -s ../lib/openmole/openmole
 
-VOLUME /root/
+RUN adduser openmole --home /var/openmole/
 
-ENTRYPOINT openmole --port 8888 --remote
+VOLUME /var/openmole/
+
+ENTRYPOINT su openmole && openmole --port 8888 --remote
 
