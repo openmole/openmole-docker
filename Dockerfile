@@ -16,7 +16,7 @@ RUN cd /tmp/ && git clone https://github.com/openmole/openmole.git && \
 RUN chmod +x /usr/local/lib/openmole/openmole
 RUN cd /usr/local/bin/ && ln -s ../lib/openmole/openmole
 
-RUN adduser openmole --home /var/openmole/
+RUN adduser openmole --gecos "" --disabled-password --home /var/openmole/
 
 USER openmole
 ENTRYPOINT openmole --port 8888 --remote
