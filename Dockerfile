@@ -19,5 +19,5 @@ RUN cd /usr/local/bin/ && ln -s ../lib/openmole/openmole
 RUN adduser openmole --gecos "" --disabled-password --home /var/openmole/
 
 USER openmole
-ENTRYPOINT openmole --port 8888 --remote
+ENTRYPOINT ["openmole", "--port", "8888", "--remote"]
 
