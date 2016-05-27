@@ -1,4 +1,4 @@
-FROM debian:testing
+FROM ubuntu:xenial
 MAINTAINER ISCPIF <contact@iscpif.fr>
 
 RUN apt-get update && apt-get install -y ca-certificates wget openjdk-8-jdk git && apt clean
