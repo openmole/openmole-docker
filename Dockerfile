@@ -1,15 +1,20 @@
 FROM ubuntu:xenial
 MAINTAINER ISCPIF <contact@iscpif.fr>
 
-RUN apt-get update && apt-get install -y ca-certificates wget openjdk-8-jdk git && apt clean
+RUN apt update && apt-get install -y ca-certificates curl bash openjdk-8-jdk git && apt clean
 RUN /var/lib/dpkg/info/ca-certificates-java.postinst configure
+
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
+
+RUN apt install git-lfs 
 
 COPY sbt /usr/local/bin/
 RUN mkdir -p /root/.sbt/0.13/plugins
 COPY plugin.sbt /root/.sbt/0.13/plugins/plugins.sbt
 
 RUN cd /tmp/ && git clone https://github.com/openmole/openmole.git && \
-    cd openmole/build-system && sbt publish-local && \
+    cd openmole && \
+    cd build-system && sbt publish-local && \
     cd ../libraries && sbt publish-local && \
     cd ../openmole && sbt "project openmole" && sbt assemble && \
     mv bin/openmole/target/assemble /usr/local/lib/openmole && \
